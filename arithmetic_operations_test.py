@@ -1,6 +1,6 @@
 import unittest
 
-from arithmetic_operations import four, times, five, one, plus, eight, seven, minus, three, nine, divided_by
+from arithmetic_operations import four, times, five, one, plus, eight, seven, minus, three, nine, divided_by, zero
 
 
 class MyTestCase(unittest.TestCase):
@@ -25,6 +25,14 @@ class MyTestCase(unittest.TestCase):
     def test_divided(self):
         result_divided = nine(divided_by(three()))
         self.assertEqual(result_divided, self.value_divided, self.message)
+
+    def test_divided_by_zero(self):
+        try:
+            result_divided = three(divided_by(zero()))
+            self.assertEqual(result_divided, self.value_divided, self.message)
+        except ZeroDivisionError as error:
+            print("An incident occurred while trying to perform the operation: " + str(error))
+            self.assert_(True, msg=error)
 
 
 if __name__ == '__main__':
